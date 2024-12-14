@@ -1,1 +1,59 @@
+# Python bytecode
+__pycache__/
+*.py[cod]
+*$py.class
+
+# Virtual environment
+venv/
+env/
+*.env
+
+# Django specific
+db.sqlite3
+*.log
+
+# Static and media files
+/static/
+/media/
+
+# Local settings
+settings_local.py
+
+# VS Code and other editor configurations
+.vscode/
+.idea/
+*.sublime-workspace
+*.sublime-project
+
+# Python package files
+*.egg
+*.egg-info/
+dist/
+build/
+*.manifest
+
+# Pipenv and Poetry
+Pipfile
+Pipfile.lock
+poetry.lock
+
+# Cache files
+*.cache
+*.coverage
+.coverage.*
+.cache/
+coverage.xml
+nosetests.xml
+
+# MyPy
+.mypy_cache/
+.dmypy.json
+dmypy.json
+
+# Pytest
+.pytest_cache/
+
+# PyCharm
+*.iml
+.idea/
 
