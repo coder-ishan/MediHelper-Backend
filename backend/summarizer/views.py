@@ -4,19 +4,16 @@ import os
 import time
 import fitz  # PyMuPDF
 import json
-from openai import OpenAI
+import openai
 from rest_framework import status
 from rest_framework.decorators import api_view
 from rest_framework.response import Response
 from django.conf import settings
 
-OPEN_AI_API_KEY = os.getenv('OPEN_AI_API_KEY')
 
 logger = logging.getLogger(__name__)
 
-client = OpenAI(
-    api_key = OPEN_AI_API_KEY
-)
+openai.api_key = os.getenv("OPENAI_API_KEY")
 
 @api_view(['GET'])
 def get_text_from_pdf(request, pdf_file_path):
@@ -61,7 +58,7 @@ def upload_and_summarize(request):
 def answer_question(question):
     with open('db.json', 'r') as f:
         context = json.load(f)["summary"]
-    response = client.answer.create(
+    response = openai.Completion.create(
         model="gpt-4",
         question=question,
         documents=[context]
@@ -75,7 +72,7 @@ def generate_summary(text):
 
     # promt template
     for chunk in input_chunks:
-        chat_completion = client.chat.completions.create(
+        chat_completion = openai.Completion.create(
             model="gpt-4",
             messages=[
                 {
@@ -100,6 +97,7 @@ def generate_summary(text):
 
     return final_summary_json
     
+
 
 
 
